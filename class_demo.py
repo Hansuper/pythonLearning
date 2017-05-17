@@ -8,7 +8,7 @@ __author__ = 'harrod'
 # 类最终都会继承的类  
 
 class Student(object):
-    # __init__第一个参数永远是self,表示创建的实例本身
+    # __init__第一个参数永远是self,表示创建 的实例本身
     # name,score这两个参数在实例化的时候  就必须传入了
     def __init__(self,name,score):
         self.name = name
