@@ -64,27 +64,51 @@
 # print('thread %s ended' % threading.current_thread().name)
 
 
-import time,threading
+# import time,threading
+#
+# balance = 0
+# lock = threading.Lock()
+# def change_it(n):
+#     global balance
+#     balance = balance + n
+#     balance = balance - n
+#
+# def run_thread(n):
+#     for i in range(100000):
+#         lock.acquire()
+#         try:
+#         change_it(n)
+#         finally:
+#             locak.release()
+#
+# t1 = threading.Thread(target=run_thread,args=(5,))
+# t2 = threading.Thread(target=run_thread,args=(8,))
+# t1.start()
+# t2.start()
+# t1.join()
+# t2.join()
+# print(balance)
+#
 
-balance = 0
-lock = threading.Lock()
-def change_it(n):
-    global balance
-    balance = balance + n
-    balance = balance - n
 
-def run_thread(n):
-    for i in range(100000):
-        lock.acquire()
-        try:
-        change_it(n)
-        finally:
-            locak.release()
+import random,time,queue
+from multiprocessing.managers import BaseManager
 
-t1 = threading.Thread(target=run_thread,args=(5,))
-t2 = threading.Thread(target=run_thread,args=(8,))
-t1.start()
-t2.start()
-t1.join()
-t2.join()
-print(balance)
+task_queue = queue.Queue()
+result_queue = queue.Queue()
+
+class QueueManger(BaseManager):
+    pass
+
+QueueManger.register('get_task_queue',callable=lambda:task_queue)
+QueueManger.register('get_result_queue',callable=lambda: result_queue)
+
+manager = QueueManager(address=('',500), authkey=b'abc')
+
+manager.start()
+
+task = manager.get_task_queue()
+result = manager.get_result_queue()
+
+for i in range(10):
+    n = random.randint(0,1000)
