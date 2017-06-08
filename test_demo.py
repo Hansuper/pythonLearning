@@ -1,34 +1,32 @@
 #! /usr/local/bin/python3
 
 
-import unittest
+def calc(*numbers):
+    print(numbers)
+    sume = 0
+    for i in numbers:
+        sume = i+sume
+    print(sume)
 
-from mydict import Dict
+a = (1,2,3,4)
+#calc(*range(30))
 
-class TestDict(unittest.TestCase):
-    def test_init(self):
-        d = Dict(a=1,b='test')
-        self.assertEqual(d.a,1)
-        self.assertEqual(d.b,'test')
-        self.assertTrue(isinstance(d,dict))
+def person(name,age,**kw):
+    print(kw)
+    print(name,'---',age,'---',kw)
 
-    def test_key(self):
-        d = Dict()
-        d['key'] = 'value'
-        self.assertEqual(d.key,'value')
+other = {'city':'beijing','country':'chain'}
+# person('jack',22,city='beijing',country = 'chain')
+# person('jack',22,**other)
 
-    def test_attr(self):
-        d = Dict()
-        d.key = 'value'
-        self.assertTrue('key' in d)
-        self.assertEqual(d['key'],value)
+def person(name,age,*,city,job):
+    print(city,job)
 
-    def test_keyerror(self):
-        d = Dict()
-        with self.assertRaises(keyError):
-            value = d['empty']
+# person('jack',22,city='beijing',job='it',c='ee')
 
-    def test_attrerror(self):
-        d = Dict()
-        with self.assertRaises(AttributeError):
-            value = d.empty
+def fact(x):
+    if x == 0:
+        return 0
+    return x + fact(x-1)
+
+print(fact(10))
