@@ -166,8 +166,23 @@
 # print(Chain().status.user.list.name)
 
 
-from enum import Enum
+# from enum import Enum
+#
+# Moth = Enum('Month',('Jan','Feb','Mar','Apr','May'))
+# for name,member in Moth.__members__.items():
+#     print(name,'=>',member,',',member.value)
 
-Moth = Enum('Month',('Jan','Feb','Mar','Apr','May'))
-for name,member in Moth.__members__.items():
-    print(name,'=>',member,',',member.value)
+
+# def fn(self,name='world'):
+#     print('hello %s' % name)
+#
+# Hello = type('Hello',(object,),dict(hello=fn))
+
+
+import logging
+logging.basicConfig(level=logging.INFO)
+
+s = '0'
+n = int(s)
+logging.info('n=%d' % n)
+print(10 / n)
